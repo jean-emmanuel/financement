@@ -1,0 +1,10 @@
+<BOUCLE_financement(FINANCEMENTS){id_financement=#ENV{id}}>
+<ul class="crowdfunding_liste_dons">
+<BOUCLE_transactions(FINANCEMENTS_TRANSACTIONS){id_financement}>
+
+
+	<li>[(#DATE|affdate)] : [(#PRENOM|ucfirst)][ (#NOM|substr{0,1}|ucfirst).] (#MONTANT €)</li>
+
+</BOUCLE_transactions>
+</ul>
+</BOUCLE_financement>

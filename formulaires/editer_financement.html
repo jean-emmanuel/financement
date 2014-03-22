@@ -1,0 +1,22 @@
+<div class='formulaire_spip formulaire_editer formulaire_#FORM formulaire_#FORM-#ENV{id_financement,nouveau}'>
+[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV**{message_ok})</p>]
+[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+ 
+[(#ENV{editable})
+<form method='post' action='#ENV{action}'><div>
+#ACTION_FORMULAIRE{#ENV{action}}
+<input type='hidden' name='id_financement' value='#ENV{id_financement}' />
+
+<ul>
+[(#SAISIE{input, titre, label=<:financement:label_titre:>, obligatoire=oui})]
+[(#SAISIE{date, date_debut, label=<:financement:label_date_debut:>, obligatoire=oui})]
+[(#SAISIE{date, date_echeance, label=<:financement:label_date_echeance:>, obligatoire=oui})]
+[(#SAISIE{input, montant_demande, label=<:financement:label_montant_demande:>, type=number, obligatoire=oui})]
+[(#SAISIE{input, email, label=<:financement:label_email:>, type=email, obligatoire=oui})]
+</ul>
+[(#REM) ajouter les saisies supplementaires : extra et autre, a cet endroit ]
+<!--extra-->
+<p class="boutons"><input type='submit' class='submit' value='<:bouton_enregistrer:>' /></p>
+</div></form>
+]
+</div>

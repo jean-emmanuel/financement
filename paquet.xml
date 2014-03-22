@@ -1,0 +1,25 @@
+<paquet
+	prefix="financement"
+	categorie="edition"
+	version="1.0.0"
+	etat="stable"
+	compatibilite="[3.0.0;3.0.*]"
+	schema="1.0.0"
+>
+
+	<nom>financement</nom>
+	<!-- Financement participatif avec Paypal -->
+
+	<auteur lien="http://ammd.net">Jean-Emmanuel</auteur>
+	<licence lien="http://artlibre.fr">Licence Art Libre</licence>
+
+
+	<pipeline nom="declarer_tables_objets_sql" inclure="base/financement.php" />
+	<pipeline nom="declarer_tables_interfaces" inclure="base/financement.php" />
+	
+	<necessite nom="saisies" compatibilite="[1.14.0;]" />
+	
+	
+	<menu nom="financements" titre="Financements" parent="menu_edition" icone="" />
+
+</paquet>

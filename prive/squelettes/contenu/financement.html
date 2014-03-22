@@ -1,0 +1,39 @@
+[(#AUTORISER{voir,financements,#ID_FINANCEMENT}|sinon_interdire_acces)]
+<BOUCLE_financement(FINANCEMENTS){id_financement}{statut==.*}{si #ENV{exec}|=={financement}}>
+[(#LANG|changer_typo)]
+[(#BOITE_OUVRIR{[
+				
+	[(#AUTORISER{modifier,financement,#ID_FINANCEMENT})
+				
+		[(#ID_FINANCEMENT|afficher_qui_edite{financement}|non)
+			[(#URL_ECRIRE{financement_edit,id_financement=#ID_FINANCEMENT}|icone_verticale{<:financement:icone_modifier_financement:>,financement,edit,right ajax preload})]
+		]
+		[(#ID_FINANCEMENT|afficher_qui_edite{financement}|oui)
+			[(#URL_ECRIRE{financement_edit,id_financement=#ID_FINANCEMENT}|icone_verticale{#ID_FINANCEMENT|afficher_qui_edite{financement},warning-24,'',right edition_deja ajax preload})]
+		]
+	]
+	<h1>[(#RANG). ](#TITRE|sinon{<:info_sans_titre:>})[(#CHEMIN_IMAGE{financement-24.png}|balise_img{financement,cadre-icone})]</h1>
+],simple fiche_objet})]
+[(#REM|changer_typo)]
+
+<strong class="label"><:financement:label_date_debut:></strong><div class="value">[(#DATE_DEBUT|affdate)]</div>
+<strong class="label"><:financement:label_date_echeance:></strong><div class="value">[(#DATE_ECHEANCE|affdate)]</div>
+<strong class="label"><:financement:label_montant_demande:></strong><div class="value">[(#MONTANT_DEMANDE) €]</div>
+<strong class="label"><:financement:label_email:></strong><div class="value">[(#EMAIL)]</div>
+
+<hr/>
+
+<INCLURE{fond=modeles/financement,id=#ID_FINANCEMENT, form=0}/>
+
+#BOITE_FERMER
+
+[(#URL_ECRIRE{financement_transaction_edit,new=oui&id_financement=#ID_FINANCEMENT}|icone_verticale{<:financement:icone_creer_financement_transaction:>,financement_transaction,new,right clearright})]
+#INCLURE{fond=prive/objets/liste/financements_transactions,id_financement,env}
+
+
+[(#EVAL{_AJAX}|oui)
+	<script type="text/javascript">/*<!\[CDATA\[*/reloadExecPage('#ENV{exec}','#navigation,#chemin,#extra');/*\]\]>*/</script>
+]
+</BOUCLE_financement>
+[(#ENV**{exec}|=={financement_edit}|?{#INCLURE{fond=prive/squelettes/contenu/financement_edit,redirect='',env,retourajax=oui},#REM|sinon_interdire_acces})]
+<//B_financement>

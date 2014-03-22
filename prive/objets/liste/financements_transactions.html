@@ -1,0 +1,36 @@
+<div class="nettoyeur"></div>
+    [(#SET{defaut_tri,#ARRAY{
+    nom,1,
+    date,#ENV{date_sens,-1},
+    id_financement_transaction,1
+    }})
+    ]<B_liste_transactions>
+    #ANCRE_PAGINATION
+    <div class="liste-objets dons">
+    <table class='spip liste'>
+    [<caption><strong class="caption">(#ENV*{titre,#GRAND_TOTAL|singulier_ou_pluriel{financement:info_1_don,financement:info_nb_dons}})</strong></caption>]
+    <thead>
+    <tr class='first_row'>
+    <th class='nom' scope='col'>[(#TRI{nom,<:financement:label_don:>,ajax})]</th>
+    <th class='date' scope='col'>[(#TRI{date,<:date:>,ajax})]</th>
+    <th class='id' scope='col'>[(#TRI{id_financement_transaction,<:info_numero_abbreviation:>,ajax})]</th>
+    </tr>
+    </thead>
+    <tbody>
+    <BOUCLE_liste_transactions(FINANCEMENTS_TRANSACTIONS){id_financement?}{where?}{statut?}{recherche?}{tri #ENV{par,num nom},#GET{defaut_tri}}{pagination #ENV{nb,10}}>
+    <tr class="[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]">
+    <td class='nom principale'><a href="[(#ID_FINANCEMENT_TRANSACTION|generer_url_entite{financement_transaction})]" title="<:info_numero_abbreviation|attribut_html:> #ID_FINANCEMENT_TRANSACTION">#MONTANT € |[ (#PRENOM)][ (#NOM)][ | (#EMAIL)]</a></td>
+    <td class='date secondaire'>[(#DATE|affdate_jourcourt)]</td>
+    <td class='id'>[(#AUTORISER{modifier,financement_transaction,#ID_FINANCEMENT_TRANSACTION}|?{
+    <a href="[(#URL_ECRIRE{financement_transaction_edit,id_financement_transaction=#ID_FINANCEMENT_TRANSACTION})]">#ID_FINANCEMENT_TRANSACTION</a>,
+    #ID_FINANCEMENT_TRANSACTION
+    })]</td>
+    </tr>
+    </BOUCLE_liste_transactions>
+    </tbody>
+    </table>
+    [<p class='pagination'>(#PAGINATION{prive})</p>]
+    </div>
+    </B_liste_transactions>[
+    <div class="liste-objets dons caption-wrap"><strong class="caption">(#ENV*{sinon,''})</strong></div>
+    ]<//B_liste_transactions>
