@@ -27,6 +27,7 @@ function financement_declarer_tables_objets_sql($tables) {
 			"date_debut"         => "datetime NOT NULL DEFAULT '0000-00-00 00:00:00'",
 			"date_echeance"      => "datetime NOT NULL DEFAULT '0000-00-00 00:00:00'",
 			"montant_demande"    => "DECIMAL(18,4) NOT NULL DEFAULT ''",
+			"montant_minimum"		 => "DECIMAL(18,4) NOT NULL DEFAULT ''",
 			"email"							 => "text NOT NULL DEFAULT ''",
 			"date_spip"          => "datetime NOT NULL DEFAULT '0000-00-00 00:00:00'",
 		),
@@ -35,7 +36,7 @@ function financement_declarer_tables_objets_sql($tables) {
 		),
 		'titre' => "titre AS titre, '' AS lang",
 		'date' => "date_spip",
-		'champs_editables'  => array("type", 'titre', 'email', 'date_debut', 'date_echeance', 'montant_demande'),
+		'champs_editables'  => array("type", 'titre', 'email', 'date_debut', 'date_echeance', 'montant_demande', 'montant_minimum'),
 		'champs_versionnes' => array(),
 		'rechercher_champs' => array(),
 		'tables_jointures'  => array()
@@ -62,7 +63,7 @@ function financement_declarer_tables_objets_sql($tables) {
 		),
 		'titre' => "montant AS titre, '' AS lang",
 		'date' => "date_spip",
-		'champs_editables'  => array('id_financement', 'email', 'prenom', 'nom', 'montant', 'date'),
+		'champs_editables'  => array('id_financement', 'email', 'prenom', 'nom', 'montant', 'date', 'adresse'),
 		'champs_versionnes' => array(),
 		'rechercher_champs' => array(),
 		'tables_jointures'  => array()

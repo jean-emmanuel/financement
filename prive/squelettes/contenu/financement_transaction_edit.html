@@ -1,0 +1,3 @@
+[(#AUTORISER{modifier,financement_transaction,#ENV{id_financement_transaction}}|sinon_interdire_acces)]
+#FORMULAIRE_EDITER_FINANCEMENT_TRANSACTION{#ENV{id_financement_transaction}, #ENV{id_financement}, #ENV{retour}|sinon{#URL_ECRIRE{financement}|parametre_url{id_financement,#ENV{id_financement}}|concat{#pagination_liste_transactions}}}
+

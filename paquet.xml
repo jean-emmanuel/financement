@@ -1,6 +1,6 @@
 <paquet
 	prefix="financement"
-	categorie="edition"
+	categorie="divers"
 	version="1.0.0"
 	etat="stable"
 	compatibilite="[3.0.0;3.0.*]"
@@ -18,7 +18,6 @@
 	<pipeline nom="declarer_tables_interfaces" inclure="base/financement.php" />
 	
 	<necessite nom="saisies" compatibilite="[1.14.0;]" />
-	
 	
 	<menu nom="financements" titre="Financements" parent="menu_edition" icone="" />
 

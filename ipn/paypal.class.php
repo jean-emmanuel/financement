@@ -146,8 +146,8 @@ class paypal_class {
    function validate_ipn() {
 
       // parse the paypal URL
-     	$sandbox="";
-      if ($this->testing) {$sandbox="sandbox";}    
+     	$sandbox="www.";
+      if ($this->testing) {$sandbox="sandbox.";}    
 
       // generate the post string from the _POST vars aswell as load the
       // _POST vars into an arry so we can play with them from the calling
@@ -159,7 +159,7 @@ class paypal_class {
       }
 
       // open the connection to paypal
-      $fp = fsockopen("ssl://".$sandbox.".paypal.com",443,$err_num,$err_str,30); 
+      $fp = fsockopen("ssl://".$sandbox."paypal.com",443,$err_num,$err_str,30); 
       if(!$fp) {
           
          // could not open the connection.  If loggin is on, the error message
@@ -172,7 +172,7 @@ class paypal_class {
  
          // Post the data back to paypal
          fputs($fp, "POST /cgi-bin/webscr HTTP/1.1\r\n"); 
-         fputs($fp, "Host: www.".$sandbox.".paypal.com\r\n"); 
+         //fputs($fp, "Host: www.".$sandbox."paypal.com\r\n"); 
          fputs($fp, "Content-type: application/x-www-form-urlencoded\r\n"); 
          fputs($fp, "Content-length: ".strlen($post_string)."\r\n"); 
          fputs($fp, "Connection: close\r\n\r\n"); 
@@ -216,10 +216,10 @@ class paypal_class {
       else $text .= 'FAIL: '.$this->last_error."\n";
       
       // Log the POST variables
-      $text .= "IPN POST Vars from Paypal:\n";
-      foreach ($this->ipn_data as $key=>$value) {
-         $text .= "$key=$value, ";
-      }
+      $text .= "IPN POST Vars from Paypal: [confidential]\n";
+      //foreach ($this->ipn_data as $key=>$value) {
+      //   $text .= "$key=$value, ";
+      //}
  
       // Log the response from the paypal server
       $text .= "\nIPN Response from Paypal Server:\n ".$this->ipn_response;

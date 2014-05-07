@@ -5,42 +5,53 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'icone_creer_financement' => "Créer un financement",
 	'icone_modifier_financement' => "Modifier ce financement",
 	
-	'icone_creer_financement_don' => "Ajouter un don",
-	'icone_modifier_financement_don' => "Modifier ce don",
+	'icone_creer_financement_transaction' => "Ajouter une transaction",
+	'icone_modifier_financement_transaction' => "Modifier cette transaction",
 	
 	'info_aucun_financement' => "Aucun financement",
 	
 	'info_1_financement' => "Un financement",
 	'info_nb_financements' => "@nb@ financements",	
 	
-	'info_1_don' => "Un don",
-	'info_nb_dons' => "@nb@ dons",
-
+	'info_1_transaction' => "Une transaction",
+	'info_nb_transactions' => "@nb@ transactions",
+	
+	// F	
+	'financement_souscrire'  => "Souscrire !",
+	'financement_participer'  => "Soutenir ce projet",
+	
 	//L
 	'label_titre' => " Titre",
 	'label_date_debut' => " Date de début",
 	'label_date_echeance' => " Date d'échéance",
-	'label_montant_demande' => " Montant demandé (€)",
+	'label_montant_demande' => " Montant demandé",
+	'label_montant_minimum' => " Montant minimum",
 	'label_email' => " Email Paypal à créditer",
+	'label_type' => " Type de financement",
+	'label_prix_exemplaire' => " Prix par exemplaire",
 
-	'label_don' => "Don",
-	'label_don_nom' => "Nom",
-	'label_don_prenom' => "Prénom",
-	'label_don_date' => "Date",
-	'label_don_montant' => "Montant",
-	'label_don_email' => "Email",
+	'label_transaction' => "Transaction",
+	'label_transaction_nom' => "Nom",
+	'label_transaction_prenom' => "Prénom",
+	'label_transaction_date' => "Date",
+	'label_transaction_montant' => "Montant",
+	'label_transaction_email' => "Email",
+	'label_transaction_adresse' => "Adresse de livraison",
 	 
 	// T
 	'titre_financement' => "Financement",
 	'titre_financements' => "Financements",
-	'titre_logo_financement' => "Logo de ce financement",
-	'titre_financements_dons' => "Dons",
-	'titre_financement_don' => "Don",
-	'titre_logo_financements_dons' => "Logo de ce don",
+  'titre_logo_financement' => "Logo de ce financement",
+  'titre_financements___transactions' => "Transactions",
+  'titre_financement_transaction' => "Transaction",
+  'titre_logo_financements_transactions' => "Logo de cette transaction",
 
 	// P
 	'paypal_message' => "Envoyer un message",
-	'paypal_submit'  => "Soutenir ce projet",
+	// S
+	'supprimer_financement' => "Supprimer ce financement",
+	'supprimer_financement_transaction' => "Supprimer cette transaction",
+	
 );
     
 ?>

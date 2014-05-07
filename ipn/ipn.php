@@ -1,9 +1,9 @@
 <?php
 
-require "paypal.class.php";
+require "ipn.class.php";
 
-$p = new paypal_class;
-$p->testing=true;
+$p = new ipn_class;
+$p->testing=false;
 
 if ($p->validate_ipn()) {
 	if($p->ipn_data['payment_status']=='Completed')
@@ -33,13 +33,18 @@ if ($p->validate_ipn()) {
 		
 		
 		// On chope les données	
-	
-		$amount = $p->ipn_data['mc_gross'] - $p->ipn_data['mc_fee'];
+		$quantity = "";
+		if ($p->ipn_data['quantity1']>1) {
+	    $quantity = $p->ipn_data['quantity1'] . " exemplaires\n" ;
+	  } elseif ($p->ipn_data['quantity1']==1)  {
+	    $quantity = "1 exemplaire\n" ;
+	  }
+		$amount = $p->ipn_data['mc_gross'];
 		$id_paypal = $p->ipn_data['txn_id'];
 		$email = $p->ipn_data['payer_email'];
 		$prenom = $p->ipn_data['first_name'];
 		$nom = $p->ipn_data['last_name'];
-		$adresse = $p->ipn_data['address'];
+		$adresse =  $quantity . $p->ipn_data['address_name'] . "\n" . $p->ipn_data['address_street'] . "\n" . $p->ipn_data['address_zip'] . "\n" . $p->ipn_data['address_city'] . "\n" . $p->ipn_data['address_country'] . "\n" . $p->ipn_data['address_state'];
 		$id_financement = $_GET['id_financement'];
 		$date= date("Y-m-d H:i:s");
 		
@@ -49,14 +54,13 @@ if ($p->validate_ipn()) {
 		
 		 sql_insertq('spip_financements_transactions', array(
 		 'id_financement' => $id_financement,
-		 'montant_don' => $amount,
+		 'montant' => $amount,
 		 'id_paypal' => $id_paypal,
 		 'email' => $email,
 		 'prenom' => $prenom,
 		 'nom' => $nom,
-		 'adress' => $adresse,
+		 'adresse' => $adresse,
 		 'date' => $date,
-		 'date' => $nom,
 		 ), 'id_paypal=' . $id_paypal);
 	
 	}

@@ -1,0 +1,2 @@
+<BOUCLE_f(FINANCEMENTS){id_financement?}><a href="[(#URL_ECRIRE{financement}|parametre_url{id_financement,#ID_FINANCEMENT})]">#TITRE</a></BOUCLE_f>
+<BOUCLE_t(FINANCEMENTS_TRANSACTIONS){id_financement_transaction=#ENV{id_financement_transaction}}>&gt; #MONTANT €</BOUCLE_t>

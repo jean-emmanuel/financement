@@ -1,0 +1,72 @@
+<BOUCLE_financement(FINANCEMENTS){id_financement=#ENV{id}}>
+
+#SET{collecte,0}
+<BOUCLE_transactions(FINANCEMENTS_TRANSACTIONS){id_financement}>
+#SET{collecte,#GET{collecte}|plus{#MONTANT}}
+</BOUCLE_transactions>
+#SET{pourcentage, #GET{collecte}|div{#MONTANT_DEMANDE}|mult{100}|round{2}}
+<br/>
+
+
+<div class="transaction_progress">
+<div class="progress-bar" style="height:30px;border:1px solid #aaa;background:rgba(155,77,77,0.2);overflow:hidden;position:relative;[(#GET{pourcentage}|>{100}|oui)background:rgb(240,120,120)]">
+<div class="progress" style="background:rgb(155,77,77);height:100%;width:100%;margin-left:[(#A|plus{100}|moins{#GET{pourcentage}}|mult{-1})]%"></div>
+<div class="progress-text" style="height:100%;text-align:center;font-weight:bold;width:100%;line-height:30px;z-index:2;position:absolute;top:0;left:0;">#GET{pourcentage}&nbsp;%</div>
+</div>
+</div>
+
+<p class="align-center"><em>#GET{collecte}&nbsp;€ [(#GET{collecte}|>{1}|?{reçus,reçu})] sur un objectif de #MONTANT_DEMANDE&nbsp; €</em></p>
+
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" class="financement_form" target="_blank">
+    <div>
+        <input type="hidden" name="cmd" value="#TYPE" />
+        <input type="hidden" name="item_name" value="[(#NOM_SITE_SPIP|textebrut)] - [(#TITRE|textebrut)]" />
+
+        <!-- Your PayPal email: -->
+        <input type="hidden" name="business"
+        value="#EMAIL"/>
+
+        <!-- PayPal will send an IPN notification to this URL: -->
+        <input type="hidden" name="notify_url"
+        value="[(#CHEMIN{ipn/ipn.php}|url_absolue)?id_financement=#ID_FINANCEMENT]" /> 
+
+        <!-- The return page to which the user is
+        navigated after the donations is complete: -->
+
+        <input type="hidden" name="return"
+        value="#SELF" /> 
+
+        <!-- Signifies that the transaction data will be
+        passed to the return page by POST: -->
+
+        <input type="hidden" name="rm" value="2" /> 
+
+        <!-- General configuration variables for the paypal landing page. -->
+        <input type="hidden" name="no_note" value="0" />
+        <input type="hidden" name="cn" value="<:financement:paypal_message:>" />
+        <input type="hidden" name="cbt" value="Retour au site (#NOM_SITE_SPIP)" />
+        <input type="hidden" name="no_shipping" value="[(#TYPE|=={_donations}|oui)0][(#TYPE|=={_xclick}|oui)2]" />
+        [(#TYPE|=={_xclick}|oui)<input type="hidden" name="shipping" value="[(#MONTANT_MINIMUM|sinon{0})]" />]
+        <input type="hidden" name="min_amount " value="0" />
+        <input type="hidden" name="undefined_quantity" value="1" />
+        <input type="hidden" name="lc" value="FR" />
+        <input type="hidden" name="currency_code" value="EUR" />
+
+        <!-- The amount of the transaction: -->
+[(#TYPE|=={_xclick}|oui)
+        <input type="hidden" name="amount" value="[(#MONTANT_MINIMUM|sinon{0})]" />
+        <div class="amount" style="display:table;width:100%;height:30px;padding:3px 3px 3px 3px;background:#fff; border:1px solid #aaa;position:relative">
+        <label for="amount" style="z-index: -1;padding:2px;display:table-cell;white-space:nowrap;width:80px;color:#666">Montant ([(#TYPE|=={_xclick}|oui)[(#MONTANT_MINIMUM|!={0}|oui)+ <b>#MONTANT_MINIMUM</b> ]]€ ) : </label>
+        <input name="shipping" id="amount" type="number" min="0" style="padding:2px;display:table-cell;width:100%;height:100%;font:inherit;background:transparent;border:0;box-shadow:0;"/>
+        </div>
+]
+        
+        <input type="hidden" name="bn" value="
+        PP-DonationsBF:btn_donate_LG.gif:NonHostedGuest" />
+
+        <!-- You can change the image of the button: -->
+        <input class="paypal" style="margin-top:20px;" type="submit" name="submit" value="<:financement:paypal_submit:>" />
+
+    </div>
+</form>
+</BOUCLE_financement>

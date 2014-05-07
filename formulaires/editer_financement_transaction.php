@@ -8,7 +8,8 @@ include_spip('inc/editer');
 
 function formulaires_editer_financement_transaction_charger_dist($id_financement_transaction='new', $id_rubrique=0, $retour='', $lier_trad=0, $config_fonc='', $row=array(), $hidden='',$id_financement){
 	$valeurs = formulaires_editer_objet_charger('financement_transaction',$id_financement_transaction,$id_rubrique,$lier_trad,$retour,$config_fonc,$row,$hidden);
-	$valeurs['id_financement']= _request('id_financement');
+  $valeurs['id_financement']= _request('id_financement');
+	$valeurs['id_financement_transaction']= _request('id_financement_transaction');
 	return $valeurs;
 }
 

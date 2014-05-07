@@ -1,0 +1,8 @@
+[(#BOITE_OUVRIR{'','info'})]
+<div class="infos">
+<div class="numero"><:financement:titre_financement_transaction:> NUMÉRO&nbsp;:<p>#ENV{id_financement_transaction}</p></div>
+
+<center><a href='[(#URL_ACTION_AUTEUR{supprimer_financement_transaction,#ID_FINANCEMENT_TRANSACTION,#URL_ECRIRE{financement}|parametre_url{id_financement,#ID_FINANCEMENT}|concat{#pagination_liste_transactions}})]'><:financement:supprimer_financement_transaction:></a></center>
+</div>
+
+#BOITE_FERMER

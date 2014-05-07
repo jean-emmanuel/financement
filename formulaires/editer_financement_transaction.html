@@ -9,11 +9,12 @@
 
 
 <ul>
-[(#SAISIE{date, date, label=<:financement:label_don_date:>, obligatoire=oui})]
-[(#SAISIE{input, prenom, label=<:financement:label_don_prenom:>, obligatoire=oui})]
-[(#SAISIE{input, nom, label=<:financement:label_don_nom:>, obligatoire=oui})]
-[(#SAISIE{input, montant, label=<:financement:label_don_montant:>, type=number, obligatoire=oui})]
-[(#SAISIE{input, email, label=<:financement:label_don_email:>, type=email, obligatoire=oui})]
+[(#SAISIE{date, date, label=<:financement:label_transaction_date:>, obligatoire=oui})]
+[(#SAISIE{input, prenom, label=<:financement:label_transaction_prenom:>, obligatoire=oui})]
+[(#SAISIE{input, nom, label=<:financement:label_transaction_nom:>, obligatoire=oui})]
+[(#SAISIE{input, montant, label=<:financement:label_transaction_montant:>, type=number, obligatoire=oui})]
+[(#SAISIE{input, email, label=<:financement:label_transaction_email:>, type=email, obligatoire=oui})]
+[(#SAISIE{textarea, adresse, label=<:financement:label_transaction_adresse:>, type=text, size='100%', rows=5})]
 </ul>
 [(#REM) ajouter les saisies supplementaires : extra et autre, a cet endroit ]
 <!--extra-->

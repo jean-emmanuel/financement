@@ -1,0 +1,13 @@
+[(#BOITE_OUVRIR{'','info'})]
+<div class="infos">
+<div class="numero"><:financement:titre_financement:> NUMÉRO&nbsp;:<p>#ENV{id_financement}</p></div>
+
+<BOUCLE_n(FINANCEMENTS_TRANSACTIONS){id_financement?}> </BOUCLE_n>
+<center><a href='[(#URL_ACTION_AUTEUR{supprimer_financement,#ID_FINANCEMENT,#URL_ECRIRE{financements}})]'><:financement:supprimer_financement:></a></center>
+<//B_n>
+
+<div class="numero">Code d'inclusion</div>
+<input style="width:90%;display:block" type='text' readonly value='<iframe width="380" height="234" src="[(#URL_FINANCEMENT{#ID_FINANCEMENT}|parametre_url{target,_blank}|parametre_url{bgcolor,eeeeee}|url_absolue)]" style="border:0;display:block;"></iframe>'/>
+</div>
+
+#BOITE_FERMER
